@@ -21,4 +21,8 @@ public class MainPage extends Page {
     MainPage(WebDriver webDriver) throws Exception {
         super(webDriver);
     }
+
+    public ChangeLanguagePageElement openChangeLanguagePane() {
+        return new ChangeLanguagePageElement(webDriver);
+    }
 }
