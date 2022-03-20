@@ -15,7 +15,7 @@ public class LoginPage extends Page {
 
     @Override
     protected boolean isPresent() {
-        boolean isDisplayed = false;
+        boolean isDisplayed;
         try {
             isDisplayed = webDriver.findElement(By.id("field_email")).isDisplayed()
                     && webDriver.findElement(By.id("field_password")).isDisplayed();

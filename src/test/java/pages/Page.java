@@ -16,7 +16,10 @@ public abstract class Page {
         }
     }
 
-    Page(WebDriver webDriver) {
-
+    Page(WebDriver webDriver) throws Exception {
+        this.webDriver = webDriver;
+        if (!isPresent()) {
+            throw new Exception("No loadable Component");
+        }
     }
 }
