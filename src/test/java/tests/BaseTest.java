@@ -1,6 +1,5 @@
 package tests;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +8,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
     protected WebDriver webDriver;
+
+    @BeforeAll
+    static void allSetUp() {
+        System.setProperty("webdriver.chrome.driver", "driver/windows/chromedriver.exe");
+    }
 
     @BeforeEach
     void setUp() {
