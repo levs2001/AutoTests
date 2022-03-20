@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.User;
@@ -14,7 +15,15 @@ public class LoginPage extends Page {
 
     @Override
     protected boolean isPresent() {
-        return webDriver.findElement(By.id("login-4182275468")).isDisplayed();
+        boolean isDisplayed = false;
+        try {
+            isDisplayed = webDriver.findElement(By.id("field_email")).isDisplayed()
+                    && webDriver.findElement(By.id("field_password")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+
+        return isDisplayed;
     }
 
     public LoginPage(WebDriver webDriver) throws Exception {
