@@ -13,10 +13,10 @@ public class ToolbarUserDropdownTest extends BaseTest {
     @Test
     void changeLanguageTest() {
         MainPage mainPage = new LoginPage(webDriver).login(TEST_USER);
-        mainPage.openChangeLanguagePane().chooseRussianLanguage();
+        mainPage.openChangeLanguageModal().chooseRussianLanguage();
         Assertions.assertEquals("Мои настройки", mainPage.getSettingsText());
 
-        mainPage.openChangeLanguagePane().chooseEnglishLanguage();
+        mainPage.openChangeLanguageModal().chooseEnglishLanguage();
         Assertions.assertEquals("My settings", mainPage.getSettingsText());
     }
 }

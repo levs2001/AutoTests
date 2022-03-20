@@ -8,6 +8,9 @@ import utils.User;
 
 public class LoginPage extends PresentableObject {
     private static final String URL = "https://ok.ru";
+    private static final String SUBMIT_BUTTON_XPATH = "//input[@data-l='t,sign_in']";
+    private static final String EMAIL_FIELD_ID = "field_email";
+    private static final String PASSWORD_FIELD_ID = "field_password";
 
     private final WebElement loginField;
     private final WebElement passwordField;
@@ -16,8 +19,8 @@ public class LoginPage extends PresentableObject {
     @Override
     protected boolean isPresent() {
         try {
-            return webDriver.findElement(By.id("field_email")).isDisplayed()
-                    && webDriver.findElement(By.id("field_password")).isDisplayed();
+            return webDriver.findElement(By.id(EMAIL_FIELD_ID)).isDisplayed()
+                    && webDriver.findElement(By.id(PASSWORD_FIELD_ID)).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -25,9 +28,9 @@ public class LoginPage extends PresentableObject {
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver, URL);
-        loginField = webDriver.findElement(By.id("field_email"));
-        passwordField = webDriver.findElement(By.id("field_password"));
-        submitButton = webDriver.findElement(By.xpath("//input[@data-l='t,sign_in']"));
+        loginField = webDriver.findElement(By.id(EMAIL_FIELD_ID));
+        passwordField = webDriver.findElement(By.id(PASSWORD_FIELD_ID));
+        submitButton = webDriver.findElement(By.xpath(SUBMIT_BUTTON_XPATH));
     }
 
     public MainPage login(User user) {

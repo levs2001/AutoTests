@@ -5,6 +5,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class MainPage extends PresentableObject {
+    private static final String CHANGE_LANG_BTN_XPATH = "//*[contains(@class, 'ph-lang-select')]";
+    private static final String SETTINGS_BTN_XPATH = "//*[@id = 'hook_Block_LeftColumnTopCardUser']//*[@href = '/settings']/*[@class = 'tico']";
+
 
     @Override
     protected boolean isPresent() {
@@ -19,12 +22,12 @@ public class MainPage extends PresentableObject {
         super(webDriver);
     }
 
-    public ChangeLanguagePageElement openChangeLanguagePane() {
-        webDriver.findElement(By.xpath("//*[contains(@class, 'ph-lang-select')]")).click();
+    public ChangeLanguagePageElement openChangeLanguageModal() {
+        webDriver.findElement(By.xpath(CHANGE_LANG_BTN_XPATH)).click();
         return new ChangeLanguagePageElement(webDriver);
     }
 
     public String getSettingsText() {
-        return webDriver.findElement(By.partialLinkText("/settings")).getText();
+        return webDriver.findElement(By.xpath(SETTINGS_BTN_XPATH)).getText();
     }
 }
