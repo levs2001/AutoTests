@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ChangeLanguagePageElement extends PresentableObject {
-    private static final String ENG_LANGUAGE_BUTTON_XPATH = "//*[@id=\"ph-whiteline\"]/div/div[3]/div/div[2]/div[1]";
-    private static final String RUS_LANGUAGE_BUTTON_XPATH = "//*[@id=\"ph-whiteline\"]/div/div[3]/div/div[1]/div[1]";
+    private static final String ENG_LANGUAGE_BUTTON_XPATH = "//*[contains(@class, 'ph-lang-modal')]//*[contains(@class, 'ph-lang-menu-column')][1]/*[contains(@class, 'ph-lang-item')][1]";
+    private static final String RUS_LANGUAGE_BUTTON_XPATH = "//*[contains(@class, 'ph-lang-modal')]//*[contains(@class, 'ph-lang-menu-column')][2]/*[contains(@class, 'ph-lang-item')][1]";
 
     private final WebElement englishLanguageBtn;
     private final WebElement russianLanguageBtn;
