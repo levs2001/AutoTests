@@ -2,12 +2,12 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
-public abstract class Page {
+public abstract class PresentableObject {
     protected WebDriver webDriver;
 
     protected abstract boolean isPresent();
 
-    Page(WebDriver webDriver, String url) {
+    PresentableObject(WebDriver webDriver, String url) {
         this.webDriver = webDriver;
         this.webDriver.get(url);
 
@@ -16,7 +16,7 @@ public abstract class Page {
         }
     }
 
-    Page(WebDriver webDriver) {
+    PresentableObject(WebDriver webDriver) {
         this.webDriver = webDriver;
         if (!isPresent()) {
             throw new RuntimeException("No loadable Component");

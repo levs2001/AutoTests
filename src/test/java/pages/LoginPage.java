@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.User;
 
-public class LoginPage extends Page {
+public class LoginPage extends PresentableObject {
     private static final String URL = "https://ok.ru";
 
     private final WebElement loginField;
@@ -15,15 +15,12 @@ public class LoginPage extends Page {
 
     @Override
     protected boolean isPresent() {
-        boolean isDisplayed;
         try {
-            isDisplayed = webDriver.findElement(By.id("field_email")).isDisplayed()
+            return webDriver.findElement(By.id("field_email")).isDisplayed()
                     && webDriver.findElement(By.id("field_password")).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
-
-        return isDisplayed;
     }
 
     public LoginPage(WebDriver webDriver) {

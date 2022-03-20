@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.MainPage;
@@ -11,9 +12,11 @@ public class ToolbarUserDropdownTest extends BaseTest {
 
     @Test
     void changeLanguageTest() {
-        new LoginPage(webDriver)
-                .login(TEST_USER)
-                .openChangeLanguagePane()
-                .chooseEnglishLanguage();
+        MainPage mainPage = new LoginPage(webDriver).login(TEST_USER);
+        mainPage.openChangeLanguagePane().chooseRussianLanguage();
+        Assertions.assertEquals("Мои настройки", mainPage.getSettingsText());
+
+        mainPage.openChangeLanguagePane().chooseEnglishLanguage();
+        Assertions.assertEquals("My settings", mainPage.getSettingsText());
     }
 }
