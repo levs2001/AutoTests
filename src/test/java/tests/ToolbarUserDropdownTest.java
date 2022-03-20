@@ -10,7 +10,7 @@ public class ToolbarUserDropdownTest extends BaseTest {
     private static final User TEST_USER = new User("event2", "private");
 
     @Test
-    void changeLanguageTest() throws Exception {
+    void changeLanguageTest() {
         new LoginPage(webDriver)
                 .login(TEST_USER)
                 .openChangeLanguagePane()

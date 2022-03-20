@@ -18,7 +18,7 @@ public class MainPage extends Page {
         return isDisplayed;
     }
 
-    MainPage(WebDriver webDriver) throws Exception {
+    MainPage(WebDriver webDriver) {
         super(webDriver);
     }
 
