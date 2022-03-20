@@ -11,7 +11,7 @@ public class LoginPage extends PresentableObject {
 
     private final WebElement loginField;
     private final WebElement passwordField;
-    private final WebElement submintButton;
+    private final WebElement submitButton;
 
     @Override
     protected boolean isPresent() {
@@ -27,13 +27,13 @@ public class LoginPage extends PresentableObject {
         super(webDriver, URL);
         loginField = webDriver.findElement(By.id("field_email"));
         passwordField = webDriver.findElement(By.id("field_password"));
-        submintButton = webDriver.findElement(By.xpath("//*[@id=\"anonymPageContent\"]/div/div[1]/div[2]/div/div[2]/div[2]/div[1]/form/div[4]/input"));
+        submitButton = webDriver.findElement(By.xpath("//input[@data-l='t,sign_in']"));
     }
 
     public MainPage login(User user) {
         loginField.sendKeys(user.login);
         passwordField.sendKeys(user.password);
-        submintButton.submit();
+        submitButton.submit();
 
         return new MainPage(webDriver);
     }

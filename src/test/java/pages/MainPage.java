@@ -20,11 +20,11 @@ public class MainPage extends PresentableObject {
     }
 
     public ChangeLanguagePageElement openChangeLanguagePane() {
-        webDriver.findElement(By.xpath("//*[@id=\"ph-whiteline\"]/div/div[2]/div")).click();
+        webDriver.findElement(By.xpath("//*[contains(@class, 'ph-lang-select')]")).click();
         return new ChangeLanguagePageElement(webDriver);
     }
 
     public String getSettingsText() {
-        return webDriver.findElement(By.xpath("//*[@id='hook_Block_LeftColumnTopCardUser']/div/ul/li[2]/a/div")).getText();
+        return webDriver.findElement(By.partialLinkText("/settings")).getText();
     }
 }
