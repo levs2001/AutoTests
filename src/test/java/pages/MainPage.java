@@ -18,7 +18,7 @@ public class MainPage extends PresentableObject {
         }
     }
 
-    MainPage(WebDriver webDriver) {
+    public MainPage(WebDriver webDriver) {
         super(webDriver);
     }
 
