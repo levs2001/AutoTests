@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
+    // Нужно 2-3 теста на человека + подключить библиотеку для матчинга и попытаться ее использовать
     protected WebDriver webDriver;
 
     @BeforeAll
