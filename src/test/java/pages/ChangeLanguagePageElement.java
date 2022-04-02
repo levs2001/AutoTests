@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 
 public class ChangeLanguagePageElement extends PresentableObject {
     private static final By ENG_LANGUAGE_BUTTON_XPATH = By.xpath("//*[contains(@class, 'ph-lang-modal')]//*[text() = 'English']");
-    private static final By RUS_LANGUAGE_BUTTON_XPATH = By.xpath("//*[contains(@class, 'ph-lang-modal')]//*[text() = 'Русский']");
 
     @Override
     protected boolean isPresent() {
@@ -21,11 +20,11 @@ public class ChangeLanguagePageElement extends PresentableObject {
         super(webDriver);
     }
 
-    public void chooseEnglishLanguage() {
-        webDriver.findElement(ENG_LANGUAGE_BUTTON_XPATH).click();
+    public void chooseLanguage(String language) {
+        webDriver.findElement(getButtonByLanguage(language)).click();
     }
 
-    public void chooseRussianLanguage() {
-        webDriver.findElement(RUS_LANGUAGE_BUTTON_XPATH).click();
+    private static By getButtonByLanguage(String language) {
+        return By.xpath("//*[contains(@class, 'ph-lang-modal')]//*[text() = '" + language + "']");
     }
 }

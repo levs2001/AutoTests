@@ -8,7 +8,6 @@ public class MainPage extends PresentableObject {
     private static final String CHANGE_LANG_BTN_XPATH = "//*[contains(@class, 'ph-lang-select')]";
     private static final String SETTINGS_BTN_XPATH = "//*[@id = 'hook_Block_LeftColumnTopCardUser']//*[@href = '/settings']/*[@class = 'tico']";
 
-
     @Override
     protected boolean isPresent() {
         try {

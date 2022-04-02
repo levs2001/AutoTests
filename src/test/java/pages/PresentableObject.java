@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 
 public abstract class PresentableObject {
-    protected WebDriver webDriver;
+    protected final WebDriver webDriver;
 
     protected abstract boolean isPresent();
 

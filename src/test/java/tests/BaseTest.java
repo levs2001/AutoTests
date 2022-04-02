@@ -13,7 +13,7 @@ public class BaseTest {
 
     @BeforeAll
     static void allSetUp() {
-        System.setProperty("webdriver.chrome.driver", "./driver/windows/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./driver/macos/chromedriver");
     }
 
     @BeforeEach

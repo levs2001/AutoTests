@@ -10,21 +10,17 @@ import utils.User;
 
 public class ToolbarUserDropdownTest extends BaseTest {
     private static final User TEST_USER = new User("event2", "private");
-
-    @BeforeEach
-    void before() {
-        MainPage mainPage = new LoginPage(webDriver).login(TEST_USER);
-        if (!mainPage.getSettingsText().equals("Мои настройки")) {
-            mainPage.openChangeLanguageModal().chooseRussianLanguage();
-        }
-    }
+    private static final String ENGLISH = "English";
+    private static final String RUSSIAN = "Русский";
 
     @Test
     void changeLanguageTest() {
-        MainPage mainPage = new MainPage(webDriver);
-        mainPage.openChangeLanguageModal().chooseEnglishLanguage();
+        MainPage mainPage = new LoginPage(webDriver).login(TEST_USER);
+        mainPage.openChangeLanguageModal().chooseLanguage(ENGLISH);
         // mainPage was changed, so we initialize it again
         mainPage = new MainPage(webDriver);
         Assertions.assertEquals("My settings", mainPage.getSettingsText());
+
+        mainPage.openChangeLanguageModal().chooseLanguage(RUSSIAN);
     }
 }
