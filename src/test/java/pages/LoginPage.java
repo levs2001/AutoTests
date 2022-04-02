@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import utils.User;
 
 public class LoginPage extends PresentableObject {
-    private static final String URL = "https://ok.ru";
     private static final String SUBMIT_BUTTON_XPATH = "//input[@data-l='t,sign_in']";
     private static final String EMAIL_FIELD_ID = "field_email";
     private static final String PASSWORD_FIELD_ID = "field_password";
@@ -27,7 +26,7 @@ public class LoginPage extends PresentableObject {
     }
 
     public LoginPage(WebDriver webDriver) {
-        super(webDriver, URL);
+        super(webDriver);
         loginField = webDriver.findElement(By.id(EMAIL_FIELD_ID));
         passwordField = webDriver.findElement(By.id(PASSWORD_FIELD_ID));
         submitButton = webDriver.findElement(By.xpath(SUBMIT_BUTTON_XPATH));

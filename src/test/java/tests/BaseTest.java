@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
-    protected WebDriver webDriver;
+    private static final String BASE_URL = "https://ok.ru";
+
+    protected WebDriver webDriver = new ChromeDriver();
 
     @BeforeAll
     static void allSetUp() {
@@ -16,11 +18,12 @@ public class BaseTest {
 
     @BeforeEach
     void setUp() {
-        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.get(BASE_URL);
     }
 
     @AfterEach
     void close() {
-        webDriver.close();
+        webDriver.quit();
     }
 }

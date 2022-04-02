@@ -7,15 +7,6 @@ public abstract class PresentableObject {
 
     protected abstract boolean isPresent();
 
-    PresentableObject(WebDriver webDriver, String url) {
-        this.webDriver = webDriver;
-        this.webDriver.get(url);
-
-        if (!isPresent()) {
-            throw new RuntimeException("No loadable Component");
-        }
-    }
-
     PresentableObject(WebDriver webDriver) {
         this.webDriver = webDriver;
         if (!isPresent()) {
