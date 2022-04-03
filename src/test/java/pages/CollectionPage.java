@@ -13,7 +13,7 @@ public class CollectionPage extends PresentableObject {
 
     @Override
     protected void check() {
-        check(COLLECTION_HEADER_BY);
+        check(COLLECTION_HEADER_BY, EDIT_BUTTON_BY);
     }
 
     public CollectionEditElement edit() {
