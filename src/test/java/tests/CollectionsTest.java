@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.BookmarksPage;
+import pages.CollectionPage;
 import pages.CreateBookmarkCollectionModal;
 import pages.MainPage;
 
@@ -14,7 +15,11 @@ class CollectionsTest extends BaseTest {
 
         BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
         CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
-        bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
+        createBookmarkCollectionModal.createCollection(CREATE_NAME);
+
+        CollectionPage collectionPage = mainPage.goToBookmarksPage().openCollection(CREATE_NAME);
+
+        bookmarksPage.addBookmarkToCollection(CREATE_NAME);
     }
 
     @Test
