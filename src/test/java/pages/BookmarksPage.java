@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class BookmarksPage extends PresentableObject {
-    private static final By BOOKMARKS_BTN_BY = By.xpath("//*[@id = 'hook_Block_AsideColumn']//*[@class = 'tico']//*[text() = 'Закладки']");
+    private static final By BOOKMARKS_BTN_BY = By.xpath("//*[@id = 'hook_Block_BookmarksMenuRB']");
 
     public BookmarksPage(WebDriver webDriver) {
         super(webDriver);
@@ -12,6 +12,6 @@ public class BookmarksPage extends PresentableObject {
 
     @Override
     protected void check() {
-
+        check(BOOKMARKS_BTN_BY);
     }
 }
