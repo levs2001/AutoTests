@@ -6,12 +6,12 @@ import pages.LoginPage;
 import pages.MainPage;
 import utils.User;
 
-import java.time.Duration;
-
 class ToolbarUserDropdownTest extends BaseTest {
     private static final User TEST_USER = new User("event2", "private");
     private static final String ENGLISH = "English";
     private static final String RUSSIAN = "Русский";
+
+    private static final String MY_SETTINGS = "My settings";
 
     @Test
     void changeLanguageTest() {
@@ -19,7 +19,7 @@ class ToolbarUserDropdownTest extends BaseTest {
         mainPage.openChangeLanguageModal().chooseLanguage(ENGLISH);
 
         mainPage = new MainPage(webDriver);
-        Assertions.assertEquals("My settings", mainPage.getSettingsText());
+        Assertions.assertEquals(MY_SETTINGS, mainPage.getSettingsText());
 
         mainPage.openChangeLanguageModal().chooseLanguage(RUSSIAN);
     }
