@@ -12,6 +12,7 @@ class CollectionsTest extends BaseTest {
 //        assertThat(Math.sqrt(-1), is(notANumber()));
     }
 
+    @Test
     void given2Strings_whenEqual_thenCorrect() {
         String a = "foo";
         String b = "FOO";
