@@ -8,8 +8,8 @@ public class MainPage extends PresentableObject {
     private static final By SETTINGS_BTN_BY = By.xpath("//*[@id = 'hook_Block_LeftColumnTopCardUser']//*[@href = '/settings']/*[@class = 'tico']");
 
     @Override
-    protected boolean isPresent() {
-        return isPresent(By.className("pf-head_itx"));
+    protected void check() {
+        check(By.className("pf-head_itx"));
     }
 
     public MainPage(WebDriver webDriver) {

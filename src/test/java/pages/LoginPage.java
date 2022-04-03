@@ -10,27 +10,24 @@ public class LoginPage extends PresentableObject {
     private static final By EMAIL_FIELD_BY = By.id("field_email");
     private static final By PASSWORD_FIELD_BY = By.id("field_password");
 
-    private final WebElement loginField;
-    private final WebElement passwordField;
-    private final WebElement submitButton;
-
-    @Override
-    protected boolean isPresent() {
-        return isPresent(EMAIL_FIELD_BY, PASSWORD_FIELD_BY);
-    }
-
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
-        loginField = webDriver.findElement(EMAIL_FIELD_BY);
-        passwordField = webDriver.findElement(PASSWORD_FIELD_BY);
-        submitButton = webDriver.findElement(SUBMIT_BUTTON_BY);
     }
 
     public MainPage login(User user) {
+        final WebElement loginField = webDriver.findElement(EMAIL_FIELD_BY);
+        final WebElement passWordField = webDriver.findElement(PASSWORD_FIELD_BY);
+        final WebElement submitButton = webDriver.findElement(SUBMIT_BUTTON_BY);
+
         loginField.sendKeys(user.login);
-        passwordField.sendKeys(user.password);
+        passWordField.sendKeys(user.password);
         submitButton.submit();
 
         return new MainPage(webDriver);
+    }
+
+    @Override
+    protected void check() {
+        check(EMAIL_FIELD_BY, PASSWORD_FIELD_BY);
     }
 }

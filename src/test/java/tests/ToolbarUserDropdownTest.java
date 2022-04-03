@@ -17,7 +17,7 @@ class ToolbarUserDropdownTest extends BaseTest {
     void changeLanguageTest() {
         MainPage mainPage = new LoginPage(webDriver).login(TEST_USER);
         mainPage.openChangeLanguageModal().chooseLanguage(ENGLISH);
-        // mainPage was changed, so we initialize it again
+
         mainPage = new MainPage(webDriver);
         Assertions.assertEquals("My settings", mainPage.getSettingsText());
 
