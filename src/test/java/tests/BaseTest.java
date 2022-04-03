@@ -9,7 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class BaseTest {
     private static final String BASE_URL = "https://ok.ru";
 
+    // Нужно 2-3 теста на человека + подключить библиотеку для матчинга и попытаться ее использовать
     protected WebDriver webDriver = new ChromeDriver();
+
 
     @BeforeAll
     static void allSetUp() {
