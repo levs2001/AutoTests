@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.time.Duration;
+
 public abstract class PresentableObject {
     protected final WebDriver webDriver;
 
@@ -25,6 +27,7 @@ public abstract class PresentableObject {
 
     PresentableObject(WebDriver webDriver) {
         this.webDriver = webDriver;
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));
         if (!isPresent()) {
             throw new RuntimeException("No loadable Component");
         }
