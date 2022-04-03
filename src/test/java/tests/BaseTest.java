@@ -12,7 +12,6 @@ public class BaseTest {
     // Нужно 2-3 теста на человека + подключить библиотеку для матчинга и попытаться ее использовать
     protected WebDriver webDriver = new ChromeDriver();
 
-
     @BeforeAll
     static void allSetUp() {
         System.setProperty("webdriver.chrome.driver", "./driver/macos/chromedriver");

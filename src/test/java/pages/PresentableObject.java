@@ -10,15 +10,15 @@ public abstract class PresentableObject {
 
     protected abstract void check();
 
-    protected void check(By... loadableElementsBy) {
-        for (By elementBy : loadableElementsBy) {
-            webDriver.findElement(elementBy).isDisplayed();
-        }
-    }
-
     PresentableObject(WebDriver webDriver) {
         this.webDriver = webDriver;
         webDriver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));
         check();
+    }
+
+    protected void check(By... loadableElementsBy) {
+        for (By elementBy : loadableElementsBy) {
+            webDriver.findElement(elementBy).isDisplayed();
+        }
     }
 }
