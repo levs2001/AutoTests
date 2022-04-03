@@ -7,7 +7,6 @@ import pages.MainPage;
 import utils.User;
 
 class ToolbarUserDropdownTest extends BaseTest {
-    private static final User TEST_USER = new User("event2", "private");
     private static final String ENGLISH = "English";
     private static final String RUSSIAN = "Русский";
 
@@ -15,7 +14,7 @@ class ToolbarUserDropdownTest extends BaseTest {
 
     @Test
     void changeLanguageTest() {
-        MainPage mainPage = new LoginPage(webDriver).login(TEST_USER);
+        MainPage mainPage = new MainPage(webDriver);
         mainPage.openChangeLanguageModal().chooseLanguage(ENGLISH);
 
         mainPage = new MainPage(webDriver);
