@@ -6,22 +6,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class BaseTest {
+class BaseTest {
+    private static final String BASE_URL = "https://ok.ru";
+
     // Нужно 2-3 теста на человека + подключить библиотеку для матчинга и попытаться ее использовать
-    protected WebDriver webDriver;
+    protected WebDriver webDriver = new ChromeDriver();
 
     @BeforeAll
     static void allSetUp() {
-        System.setProperty("webdriver.chrome.driver", "./driver/windows/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./driver/macos/chromedriver");
     }
 
     @BeforeEach
     void setUp() {
-        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.get(BASE_URL);
     }
 
     @AfterEach
     void close() {
-        webDriver.close();
+        webDriver.quit();
     }
 }
