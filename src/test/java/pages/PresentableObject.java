@@ -18,9 +18,7 @@ public abstract class PresentableObject {
 
     protected void check(By... loadableElementsBy) {
         for (By elementBy : loadableElementsBy) {
-            boolean displayed = webDriver.findElement(elementBy).isDisplayed();
-
-            if (!displayed) {
+            if (!webDriver.findElement(elementBy).isDisplayed()) {
                 throw new RuntimeException("ELEMENT IS NOT DISPLAYED");
             }
         }
