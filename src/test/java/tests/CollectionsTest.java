@@ -23,6 +23,6 @@ class CollectionsTest extends BaseTest {
     void testCreateBookmarkCollectionTest() {
         MainPage mainPage = new MainPage(webDriver);
 
-        mainPage.goToBookmarksPage();
+        mainPage.goToBookmarksPage().openCollection("Гарри Поттер").edit();//.openCreateBookmarkCollectionModal();
     }
 }

@@ -17,6 +17,15 @@ public class BookmarksPage extends PresentableObject {
         return new CreateBookmarkCollectionModal(webDriver);
     }
 
+    public CollectionPage openCollection(String collectionName) {
+        webDriver.findElement(getButtonCollection(collectionName)).click();
+        return new CollectionPage(webDriver);
+    }
+
+    private By getButtonCollection(String collectionName) {
+        return By.xpath("//*[@class = 'bookmarks-navbar-card']//*[text() = '" + collectionName + "']");
+    }
+
     @Override
     protected void check() {
         check(BOOKMARKS_BTN_BY);
