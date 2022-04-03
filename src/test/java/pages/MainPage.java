@@ -8,7 +8,7 @@ public class MainPage extends PresentableObject {
     private static final By SETTINGS_BTN_BY = By.xpath("//*[@id = 'hook_Block_LeftColumnTopCardUser']//*[@href = '/settings']/*[@class = 'tico']");
     private static final By HEAD_BY = By.className("pf-head_itx");
 
-    private static final By MORE_BTN_BY = By.xpath("//*[@id = 'hook_Block_AsideColumn']//*[@class = 'tico']//*[text() = 'Ещё']");
+    private static final By MORE_BTN_BY = By.xpath("//*[@id = 'hook_Block_AsideColumn']//*[@data-module='Toggler']");
     private static final By BOOKMARKS_BTN_BY = By.xpath("//*[@id = 'hook_Block_AsideColumn']//*[text() = 'Закладки']");
 
     public MainPage(WebDriver webDriver) {
