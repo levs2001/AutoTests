@@ -9,7 +9,7 @@ class CollectionsTest extends BaseTest {
     private static final String CREATE_NAME = "Гарри Поттер 2";
 
     @Test
-    void testCreateBookmarkCollectionTest() {
+    void createBookmarkCollectionTest() {
         MainPage mainPage = new MainPage(webDriver);
 
         BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
