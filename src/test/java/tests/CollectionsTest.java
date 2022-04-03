@@ -4,11 +4,18 @@ import org.junit.jupiter.api.Test;
 import pages.MainPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 class CollectionsTest extends BaseTest {
     @Test
     void testSquareRootOfMinusOneIsNotANumber() {
 //        assertThat(Math.sqrt(-1), is(notANumber()));
+    }
+
+    void given2Strings_whenEqual_thenCorrect() {
+        String a = "foo";
+        String b = "FOO";
+        assertThat(a, equalToIgnoringCase(b));
     }
 
     @Test
