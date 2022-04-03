@@ -1,28 +1,19 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.BookmarksPage;
+import pages.CreateBookmarkCollectionModal;
 import pages.MainPage;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
-
 class CollectionsTest extends BaseTest {
-    @Test
-    void testSquareRootOfMinusOneIsNotANumber() {
-//        assertThat(Math.sqrt(-1), is(notANumber()));
-    }
-
-    @Test
-    void given2Strings_whenEqual_thenCorrect() {
-        String a = "foo";
-        String b = "FOO";
-        assertThat(a, equalToIgnoringCase(b));
-    }
+    private static final String CREATE_NAME = "Гарри Поттер 2";
 
     @Test
     void testCreateBookmarkCollectionTest() {
         MainPage mainPage = new MainPage(webDriver);
 
-        mainPage.goToBookmarksPage();
+        BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
+        CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
+        bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
     }
 }
