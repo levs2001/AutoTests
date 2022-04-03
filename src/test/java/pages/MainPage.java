@@ -9,7 +9,7 @@ public class MainPage extends PresentableObject {
     private static final By HEAD_BY = By.className("pf-head_itx");
 
     private static final By MORE_BTN_BY = By.xpath("//*[@id = 'hook_Block_AsideColumn']//*[@data-module='Toggler']");
-    private static final By BOOKMARKS_BTN_BY = By.xpath("//*[@id = 'hook_Block_AsideColumn']//*[text() = 'Закладки']");
+    private static final By BOOKMARKS_BTN_BY = By.xpath("//*[@id = 'hook_Block_AsideColumn']//*[@href = '/bookmarks']");
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
