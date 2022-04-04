@@ -1,7 +1,9 @@
-package pages;
+package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.bookmarks.BookmarksPage;
+import pages.PresentableObject;
 
 import java.time.Duration;
 

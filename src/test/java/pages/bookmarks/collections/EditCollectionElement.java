@@ -1,9 +1,10 @@
-package pages;
+package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.PresentableObject;
 
-public class CollectionEditElement extends PresentableObject {
+public class EditCollectionElement extends PresentableObject {
     private static final By EDIT_MENU_BY = By.xpath("//*[@id = 'hook_Block_ShortcutMenu']//*[contains(@class, 'bookmarks-collection-shortcut-menu')]");
     private static final By RENAME_BTN_BY = By.xpath("//*[@id = 'hook_Block_ShortcutMenu']//*[contains(@data-l, 'collection_rename')]");
     private static final By DELETE_BTN_BY = By.xpath("//*[@id = 'hook_Block_ShortcutMenu']//*[contains(@data-l, 'collection_remove')]");
@@ -13,7 +14,7 @@ public class CollectionEditElement extends PresentableObject {
         check(EDIT_MENU_BY);
     }
 
-    public CollectionEditElement(WebDriver webDriver) {
+    public EditCollectionElement(WebDriver webDriver) {
         super(webDriver);
     }
 

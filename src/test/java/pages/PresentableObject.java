@@ -10,7 +10,7 @@ public abstract class PresentableObject {
 
     protected abstract void check();
 
-    PresentableObject(WebDriver webDriver) {
+    protected PresentableObject(WebDriver webDriver) {
         this.webDriver = webDriver;
         webDriver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));
         check();

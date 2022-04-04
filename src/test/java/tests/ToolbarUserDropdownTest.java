@@ -2,9 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.LoginPage;
 import pages.MainPage;
-import utils.User;
 
 class ToolbarUserDropdownTest extends BaseTest {
     private static final String ENGLISH = "English";

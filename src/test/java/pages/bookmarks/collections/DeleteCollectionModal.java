@@ -1,7 +1,9 @@
-package pages;
+package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.bookmarks.BookmarksPage;
+import pages.PresentableObject;
 
 public class DeleteCollectionModal extends PresentableObject {
     private static final By FORM_BY = By.xpath("//*[@id = 'hook_Modal_popLayerModal']//*[text() = 'Удалить подборку']");

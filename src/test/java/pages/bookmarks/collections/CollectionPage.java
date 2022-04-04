@@ -1,7 +1,8 @@
-package pages;
+package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.PresentableObject;
 
 public class CollectionPage extends PresentableObject {
     private static final By COLLECTION_HEADER_BY = By.xpath("//*[@id = 'hook_Block_BookmarksCollectionBlock']");
@@ -16,8 +17,8 @@ public class CollectionPage extends PresentableObject {
         check(COLLECTION_HEADER_BY, EDIT_BUTTON_BY);
     }
 
-    public CollectionEditElement edit() {
+    public EditCollectionElement edit() {
         webDriver.findElement(EDIT_BUTTON_BY).click();
-        return new CollectionEditElement(webDriver);
+        return new EditCollectionElement(webDriver);
     }
 }

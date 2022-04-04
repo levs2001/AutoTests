@@ -1,8 +1,11 @@
-package pages;
+package pages.bookmarks;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import pages.PresentableObject;
+import pages.bookmarks.collections.CollectionPage;
+import pages.bookmarks.collections.CreateBookmarkCollectionModal;
 
 public class BookmarksPage extends PresentableObject {
     private static final By BOOKMARKS_BTN_BY = By.xpath("//*[@id = 'hook_Block_BookmarksMenuRB']");

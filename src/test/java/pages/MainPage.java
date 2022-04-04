@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.bookmarks.BookmarksPage;
 
 public class MainPage extends PresentableObject {
     private static final By CHANGE_LANG_BTN_BY = By.xpath("//*[contains(@class, 'ph-lang-select')]");

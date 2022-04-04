@@ -1,13 +1,13 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.BookmarksPage;
-import pages.CollectionPage;
-import pages.CreateBookmarkCollectionModal;
+import pages.bookmarks.BookmarksPage;
+import pages.bookmarks.collections.CollectionPage;
+import pages.bookmarks.collections.CreateBookmarkCollectionModal;
 import pages.MainPage;
 
 class CollectionsTest extends BaseTest {
-    // TODO: Refactor all
+    // TODO: Add matchers to assert
 
     private static final String CREATE_NAME = "Гарри Поттер 2";
     private static final String NEW_NAME = "Гарри Поттер 3";
@@ -23,7 +23,7 @@ class CollectionsTest extends BaseTest {
     }
 
     @Test
-    void editCollectionTest() {
+    void editBookmarkCollectionTest() {
         MainPage mainPage = new MainPage(webDriver);
         BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
         CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
@@ -32,11 +32,5 @@ class CollectionsTest extends BaseTest {
         CollectionPage collectionPage = bookmarksPage.openCollection(CREATE_NAME).edit().openRenameModal().rename(NEW_NAME);
         // TODO: Fix this test, now is working only in debug mode
         collectionPage.edit().openDeleteModal().delete();
-    }
-
-    @Test
-    void editBookmarkCollectionTest() {
-        MainPage mainPage = new MainPage(webDriver);
-        mainPage.goToBookmarksPage().openCollection("Гарри Поттер").edit();//.openCreateBookmarkCollectionModal();
     }
 }
