@@ -1,10 +1,12 @@
 package tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import pages.MainPage;
 import pages.bookmarks.BookmarksPage;
 import pages.bookmarks.collections.CollectionPage;
 import pages.bookmarks.collections.CreateBookmarkCollectionModal;
-import pages.MainPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -37,6 +39,21 @@ class CollectionsTest extends BaseTest {
         bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
 
         CollectionPage collectionPage = bookmarksPage.openCollection(CREATE_NAME).edit().openRenameModal().rename(NEW_NAME);
+
+        collectionPage.edit().openDeleteModal().delete();
+    }
+
+    @Test
+    void addBookmarkToCollectionTest() {
+        MainPage mainPage = new MainPage(webDriver);
+
+        BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
+        CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
+        bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
+        
+        bookmarksPage.openFirstFeedBookmarkShortcutMenu().addToCollection(CREATE_NAME);
+        CollectionPage collectionPage = bookmarksPage.openCollection(CREATE_NAME);
+        Assertions.assertFalse(collectionPage.isEmpty());
 
         collectionPage.edit().openDeleteModal().delete();
     }
