@@ -50,13 +50,22 @@ class CollectionsTest extends BaseTest {
 
     @Test
     void editBookmarkCollectionTest() {
-        BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
-        CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
+        MainPage mainPage = new MainPage(webDriver);
+        BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
 
         String createName = MyRandom.getString();
+        assertThat(bookmarksPage.getCollectionNames(), not(hasItem(createName)));
+
+        CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
         bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
+        assertThat(bookmarksPage.getCollectionNames(), hasItem(createName));
+
+        CollectionPage collectionPage = bookmarksPage.openCollection(createName);
+        assertThat(collectionPage.getCollectionName(), equalTo(createName));
+
         String newName = MyRandom.getString();
-        CollectionPage collectionPage = bookmarksPage.openCollection(createName).edit().openRenameModal().rename(newName);
+        collectionPage.edit().openRenameModal().rename(newName);
+        assertThat(collectionPage.getCollectionName(), equalTo(newName));
 
         collectionPage.edit().openDeleteModal().delete();
     }
@@ -70,6 +79,7 @@ class CollectionsTest extends BaseTest {
 
         bookmarksPage.openFirstFeedBookmarkShortcutMenu().addToCollection(createName);
         CollectionPage collectionPage = bookmarksPage.openCollection(createName);
+
         Assertions.assertFalse(collectionPage.isEmpty());
 
         collectionPage.edit().openDeleteModal().delete();

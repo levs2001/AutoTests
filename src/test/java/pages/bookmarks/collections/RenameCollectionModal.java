@@ -3,6 +3,7 @@ package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import pages.PresentableObject;
 
@@ -16,7 +17,10 @@ public class RenameCollectionModal extends PresentableObject {
     }
 
     public CollectionPage rename(String newName) {
-        webDriver.findElement(NAME_INP_BY).sendKeys(newName);
+        WebElement nameInputField = webDriver.findElement(NAME_INP_BY);
+        nameInputField.clear();
+        nameInputField.sendKeys(newName);
+        
         webDriver.findElement(SAVE_BTN_BY).click();
         
         return new CollectionPage(webDriver);
