@@ -3,6 +3,7 @@ package pages.bookmarks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+
 import pages.PresentableObject;
 import pages.bookmarks.collections.CollectionPage;
 import pages.bookmarks.collections.CreateBookmarkCollectionModal;
@@ -12,6 +13,8 @@ public class BookmarksPage extends PresentableObject {
     private static final By CREATE_COLLECTION_BTN_BY = By.xpath("//*[@id = 'hook_Block_BookmarksRB']//*[text() = 'Добавить подборку']");
     private static final By FIRST_BOOKMARK_FEED_BY = By.xpath("//*[@id = 'hook_Block_AllBookmarksBlock']//*[@class = 'bookmark-big-card']");
     private static final By FIRST_BOOKMARK_FEED_ANCHOR_BY = By.xpath("//*[@id = 'hook_Block_AllBookmarksBlock']//*[contains(@class, 'bookmark-shortcut-menu-anchor__icon')]");
+
+    private static final int HOLD_TIME = 300;
 
     public BookmarksPage(WebDriver webDriver) {
         super(webDriver);
@@ -28,12 +31,14 @@ public class BookmarksPage extends PresentableObject {
         return new CollectionPage(webDriver);
     }
 
-    public BookmarksPage addBookmarkToCollection(String collectionName) {
+    public BookmarkShortcutMenu openFirstFeedBookmarkShortcutMenu() {
         Actions actions = new Actions(webDriver);
-        actions.moveToElement(webDriver.findElement(FIRST_BOOKMARK_FEED_BY));
-        actions.moveToElement(webDriver.findElement(FIRST_BOOKMARK_FEED_ANCHOR_BY));
-
-        return new BookmarksPage(webDriver);
+        actions.moveToElement(webDriver.findElement(FIRST_BOOKMARK_FEED_BY))
+                .moveToElement(webDriver.findElement(FIRST_BOOKMARK_FEED_ANCHOR_BY))
+                .pause(HOLD_TIME)
+                .perform();
+        
+        return new BookmarkShortcutMenu(webDriver);
     }
 
     private By getButtonCollection(String collectionName) {
