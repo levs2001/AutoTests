@@ -6,6 +6,9 @@ import pages.bookmarks.collections.CollectionPage;
 import pages.bookmarks.collections.CreateBookmarkCollectionModal;
 import pages.MainPage;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 class CollectionsTest extends BaseTest {
     // TODO: Add matchers to assert
 
@@ -18,8 +21,12 @@ class CollectionsTest extends BaseTest {
 
         BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
         CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
+
         bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
+        assertThat(bookmarksPage.getCollectionNames(), hasItem(CREATE_NAME));
+
         bookmarksPage.openCollection(CREATE_NAME).edit().openDeleteModal().delete();
+        assertThat(bookmarksPage.getCollectionNames(), not(hasItem(CREATE_NAME)));
     }
 
     @Test
@@ -30,7 +37,7 @@ class CollectionsTest extends BaseTest {
         bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
 
         CollectionPage collectionPage = bookmarksPage.openCollection(CREATE_NAME).edit().openRenameModal().rename(NEW_NAME);
-        
+
         collectionPage.edit().openDeleteModal().delete();
     }
 }

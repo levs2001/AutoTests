@@ -7,11 +7,16 @@ import pages.PresentableObject;
 import pages.bookmarks.collections.CollectionPage;
 import pages.bookmarks.collections.CreateBookmarkCollectionModal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookmarksPage extends PresentableObject {
     private static final By BOOKMARKS_BTN_BY = By.xpath("//*[@id = 'hook_Block_BookmarksMenuRB']");
     private static final By CREATE_COLLECTION_BTN_BY = By.xpath("//*[@id = 'hook_Block_BookmarksRB']//*[text() = 'Добавить подборку']");
     private static final By FIRST_BOOKMARK_FEED_BY = By.xpath("//*[@id = 'hook_Block_AllBookmarksBlock']//*[@class = 'bookmark-big-card']");
     private static final By FIRST_BOOKMARK_FEED_ANCHOR_BY = By.xpath("//*[@id = 'hook_Block_AllBookmarksBlock']//*[contains(@class, 'bookmark-shortcut-menu-anchor__icon')]");
+    private static final By BOOKMARK_CARD_TITLE_BY = By.xpath("//*[contains(@class, 'bookmarks-navbar-card_title ellip')]");
+    private static final By SPAN_BY = By.xpath("//span");
 
     public BookmarksPage(WebDriver webDriver) {
         super(webDriver);
@@ -34,6 +39,15 @@ public class BookmarksPage extends PresentableObject {
         actions.moveToElement(webDriver.findElement(FIRST_BOOKMARK_FEED_ANCHOR_BY));
 
         return new BookmarksPage(webDriver);
+    }
+
+    public List<String> getCollectionNames() {
+        List<String> names = new ArrayList<>();
+        var els = webDriver.findElements(BOOKMARK_CARD_TITLE_BY);
+        for (var el : els) {
+            names.add(el.getText());
+        }
+        return names;
     }
 
     private By getButtonCollection(String collectionName) {
