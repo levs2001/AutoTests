@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import pages.bookmarks.BookmarksPage;
 import pages.PresentableObject;
 
-import java.time.Duration;
 
 public class CreateBookmarkCollectionModal extends PresentableObject {
     private static final By FORM_BY = By.xpath("//*[@id = 'hook_Modal_popLayerModal']//*[@class = 'bookmark-collection-action-form']");
@@ -18,7 +17,6 @@ public class CreateBookmarkCollectionModal extends PresentableObject {
 
     public BookmarksPage createCollection(String collectionName) {
         webDriver.findElement(FIELD_NAME_BY).sendKeys(collectionName);
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));
         webDriver.findElement(CREATE_BTN_BY).click();
 
         return new BookmarksPage(webDriver);

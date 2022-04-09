@@ -2,6 +2,8 @@ package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
 import pages.bookmarks.BookmarksPage;
 import pages.PresentableObject;
 

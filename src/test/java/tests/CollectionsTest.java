@@ -30,7 +30,7 @@ class CollectionsTest extends BaseTest {
         bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
 
         CollectionPage collectionPage = bookmarksPage.openCollection(CREATE_NAME).edit().openRenameModal().rename(NEW_NAME);
-        // TODO: Fix this test, now is working only in debug mode
+        
         collectionPage.edit().openDeleteModal().delete();
     }
 }

@@ -2,6 +2,7 @@ package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import pages.PresentableObject;
 
 public class CollectionPage extends PresentableObject {
@@ -19,6 +20,7 @@ public class CollectionPage extends PresentableObject {
 
     public EditCollectionElement edit() {
         webDriver.findElement(EDIT_BUTTON_BY).click();
+
         return new EditCollectionElement(webDriver);
     }
 }

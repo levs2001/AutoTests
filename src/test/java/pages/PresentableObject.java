@@ -2,17 +2,20 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 
 public abstract class PresentableObject {
     protected final WebDriver webDriver;
+    private static final int PAUSE_TIME_MS = 300;
 
     protected abstract void check();
 
     protected PresentableObject(WebDriver webDriver) {
         this.webDriver = webDriver;
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));
+        new Actions(webDriver).pause(PAUSE_TIME_MS).perform();
         check();
     }
 

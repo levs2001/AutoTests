@@ -2,6 +2,7 @@ package pages.bookmarks.collections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import pages.PresentableObject;
 
 public class EditCollectionElement extends PresentableObject {
@@ -20,11 +21,13 @@ public class EditCollectionElement extends PresentableObject {
 
     public RenameCollectionModal openRenameModal() {
         webDriver.findElement(RENAME_BTN_BY).click();
+
         return new RenameCollectionModal(webDriver);
     }
 
     public DeleteCollectionModal openDeleteModal() {
         webDriver.findElement(DELETE_BTN_BY).click();
+
         return new DeleteCollectionModal(webDriver);
     }
 }
