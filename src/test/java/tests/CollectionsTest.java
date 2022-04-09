@@ -7,52 +7,69 @@ import pages.MainPage;
 import pages.bookmarks.BookmarksPage;
 import pages.bookmarks.collections.CollectionPage;
 import pages.bookmarks.collections.CreateBookmarkCollectionModal;
+import utils.MyRandom;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 class CollectionsTest extends BaseTest {
-    // TODO: Add matchers to assert
-
-    private static final String CREATE_NAME = "Гарри Поттер 2";
-    private static final String NEW_NAME = "Гарри Поттер 3";
-
     @Test
     void createBookmarkCollectionTest() {
-        MainPage mainPage = new MainPage(webDriver);
-
-        BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
+        BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
         CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
 
-        bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
-        assertThat(bookmarksPage.getCollectionNames(), hasItem(CREATE_NAME));
+        String createName = MyRandom.getString();
+        bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
+        assertThat(bookmarksPage.getCollectionNames(), hasItem(createName));
 
-        bookmarksPage.openCollection(CREATE_NAME).edit().openDeleteModal().delete();
-        assertThat(bookmarksPage.getCollectionNames(), not(hasItem(CREATE_NAME)));
+        bookmarksPage.openCollection(createName).edit().openDeleteModal().delete();
+        assertThat(bookmarksPage.getCollectionNames(), not(hasItem(createName)));
+    }
+
+    @Test
+    void createManyBookmarksCollectionTest() {
+        BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
+        List<String> added = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
+            String rndStr = MyRandom.getString();
+            bookmarksPage = createBookmarkCollectionModal.createCollection(rndStr);
+            added.add(rndStr);
+        }
+        assertThat(added, everyItem(isIn(bookmarksPage.getCollectionNames())));
+
+        for (String el : added) {
+            bookmarksPage.openCollection(el).edit().openDeleteModal().delete();
+            bookmarksPage = new BookmarksPage(webDriver);
+        }
+        assertThat(added, everyItem(not(isIn(bookmarksPage.getCollectionNames()))));
     }
 
     @Test
     void editBookmarkCollectionTest() {
-        MainPage mainPage = new MainPage(webDriver);
-        BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
+        BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
         CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
-        bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
 
-        CollectionPage collectionPage = bookmarksPage.openCollection(CREATE_NAME).edit().openRenameModal().rename(NEW_NAME);
+        String createName = MyRandom.getString();
+        bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
+        String newName = MyRandom.getString();
+        CollectionPage collectionPage = bookmarksPage.openCollection(createName).edit().openRenameModal().rename(newName);
 
         collectionPage.edit().openDeleteModal().delete();
     }
 
     @Test
     void addBookmarkToCollectionTest() {
-        MainPage mainPage = new MainPage(webDriver);
-
-        BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
+        BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
         CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
-        bookmarksPage = createBookmarkCollectionModal.createCollection(CREATE_NAME);
-        
-        bookmarksPage.openFirstFeedBookmarkShortcutMenu().addToCollection(CREATE_NAME);
-        CollectionPage collectionPage = bookmarksPage.openCollection(CREATE_NAME);
+        String createName = MyRandom.getString();
+        bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
+
+        bookmarksPage.openFirstFeedBookmarkShortcutMenu().addToCollection(createName);
+        CollectionPage collectionPage = bookmarksPage.openCollection(createName);
         Assertions.assertFalse(collectionPage.isEmpty());
 
         collectionPage.edit().openDeleteModal().delete();
