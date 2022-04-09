@@ -10,6 +10,7 @@ public class CollectionPage extends PresentableObject {
     private static final By COLLECTION_HEADER_BY = By.xpath("//*[@id = 'hook_Block_BookmarksCollectionBlock']");
     private static final By EDIT_BUTTON_BY = By.xpath("//*[@class = 'bookmark-collection-header_button-content']");
     private static final By FIRST_BOOKMARK_FEED_BY = By.xpath("//*[@id = 'hook_Block_BookmarksCollectionBlock']//*[contains(@class, 'bookmarks-feed-list')]");
+    private static final By COLLECTION_NAME_BY = By.xpath("//*[@id = 'hook_Block_BookmarksRB']//*[contains(@class, 'bookmark-breadcrumbs')]//span[@class = 'ellip']");
 
     public CollectionPage(WebDriver webDriver) {
         super(webDriver);
@@ -17,7 +18,11 @@ public class CollectionPage extends PresentableObject {
 
     @Override
     protected void check() {
-        check(COLLECTION_HEADER_BY, EDIT_BUTTON_BY);
+        check(COLLECTION_HEADER_BY, EDIT_BUTTON_BY, COLLECTION_NAME_BY);
+    }
+    
+    public String getCollectionName() {
+        return webDriver.findElement(COLLECTION_NAME_BY).getText();
     }
 
     public boolean isEmpty() {
