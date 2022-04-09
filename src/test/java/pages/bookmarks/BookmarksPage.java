@@ -17,7 +17,6 @@ public class BookmarksPage extends PresentableObject {
     private static final By FIRST_BOOKMARK_FEED_BY = By.xpath("//*[@id = 'hook_Block_AllBookmarksBlock']//*[@class = 'bookmark-big-card']");
     private static final By FIRST_BOOKMARK_FEED_ANCHOR_BY = By.xpath("//*[@id = 'hook_Block_AllBookmarksBlock']//*[contains(@class, 'bookmark-shortcut-menu-anchor__icon')]");
     private static final By BOOKMARK_CARD_TITLE_BY = By.xpath("//*[contains(@class, 'bookmarks-navbar-card_title ellip')]");
-    private static final By SPAN_BY = By.xpath("//span");
 
     private static final int HOLD_TIME = 300;
 
@@ -42,7 +41,7 @@ public class BookmarksPage extends PresentableObject {
                 .moveToElement(webDriver.findElement(FIRST_BOOKMARK_FEED_ANCHOR_BY))
                 .pause(HOLD_TIME)
                 .perform();
-        
+
         return new BookmarkShortcutMenu(webDriver);
     }
 
