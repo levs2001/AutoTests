@@ -1,8 +1,11 @@
 package tests;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import pages.MainPage;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 class ToolbarUserDropdownTest extends BaseTest {
     private static final String ENGLISH = "English";
@@ -16,7 +19,7 @@ class ToolbarUserDropdownTest extends BaseTest {
         mainPage.openChangeLanguageModal().chooseLanguage(ENGLISH);
 
         mainPage = new MainPage(webDriver);
-        Assertions.assertEquals(MY_SETTINGS, mainPage.getSettingsText());
+        assertThat(mainPage.getSettingsText(), equalTo(MY_SETTINGS));
 
         mainPage.openChangeLanguageModal().chooseLanguage(RUSSIAN);
     }
