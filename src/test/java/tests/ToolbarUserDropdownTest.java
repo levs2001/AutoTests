@@ -14,12 +14,12 @@ class ToolbarUserDropdownTest extends BaseTest {
     private static final String MY_SETTINGS = "My settings";
 
     @Test
-    void changeLanguageTest() {
+    void changeToEnglishLanguageTest() {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openChangeLanguageModal().chooseLanguage(ENGLISH);
 
         mainPage = new MainPage(webDriver);
-        assertThat(mainPage.getSettingsText(), equalTo(MY_SETTINGS));
+        assertThat("Not changed to engish language.", mainPage.getSettingsText(), equalTo(MY_SETTINGS));
 
         mainPage.openChangeLanguageModal().chooseLanguage(RUSSIAN);
     }

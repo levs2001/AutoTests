@@ -7,6 +7,6 @@ public class MyRandom {
 
     public static String getString() {
         int n = ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE);
-        return PREFIX + String.valueOf(n);
+        return PREFIX + n;
     }
 }

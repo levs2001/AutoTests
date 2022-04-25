@@ -19,8 +19,8 @@ public class LoginPage extends PresentableObject {
         final WebElement passWordField = webDriver.findElement(PASSWORD_FIELD_BY);
         final WebElement submitButton = webDriver.findElement(SUBMIT_BUTTON_BY);
 
-        loginField.sendKeys(user.login);
-        passWordField.sendKeys(user.password);
+        loginField.sendKeys(user.login());
+        passWordField.sendKeys(user.password());
         submitButton.submit();
 
         return new MainPage(webDriver);

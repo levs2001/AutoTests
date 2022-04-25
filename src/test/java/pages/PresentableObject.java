@@ -6,7 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public abstract class PresentableObject {
     protected final WebDriver webDriver;
-    private static final int PAUSE_TIME_MS = 300;
+    protected static final int PAUSE_TIME_MS = 300;
 
     protected abstract void check();
 
@@ -19,7 +19,7 @@ public abstract class PresentableObject {
     protected void check(By... loadableElementsBy) {
         for (By elementBy : loadableElementsBy) {
             if (!webDriver.findElement(elementBy).isDisplayed()) {
-                throw new RuntimeException("ELEMENT IS NOT DISPLAYED");
+                throw new RuntimeException("ELEMENT IS NOT DISPLAYED: " + elementBy);
             }
         }
     }

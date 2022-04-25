@@ -3,6 +3,8 @@ package tests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import pages.MainPage;
 import pages.bookmarks.BookmarksPage;
 import pages.bookmarks.collections.CollectionPage;
@@ -18,64 +20,61 @@ import static org.hamcrest.Matchers.*;
 class CollectionsTest extends BaseTest {
     @Test
     void createBookmarkCollectionTest() {
-        BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
-        CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
+        CreateBookmarkCollectionModal createBookmarkCollectionModal =
+                new MainPage(webDriver).goToBookmarksPage().openCreateBookmarkCollectionModal();
 
         String createName = MyRandom.getString();
-        bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
-        assertThat(bookmarksPage.getCollectionNames(), hasItem(createName));
+        BookmarksPage bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
+        assertThat("Collection wasn't created.", bookmarksPage.getCollectionNames(), hasItem(createName));
 
         bookmarksPage.openCollection(createName).edit().openDeleteModal().delete();
-        assertThat(bookmarksPage.getCollectionNames(), not(hasItem(createName)));
+        assertThat("Collection wasn't deleted.", bookmarksPage.getCollectionNames(), not(hasItem(createName)));
     }
 
-    @Test
-    void createManyBookmarksCollectionTest() {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4})
+    void createManyBookmarksCollectionTest(int collectionC) {
         BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
         List<String> added = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < collectionC; i++) {
             CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
             String rndStr = MyRandom.getString();
             bookmarksPage = createBookmarkCollectionModal.createCollection(rndStr);
             added.add(rndStr);
         }
-        assertThat(added, everyItem(isIn(bookmarksPage.getCollectionNames())));
+        assertThat("Item wasn't added to collections.", added, everyItem(isIn(bookmarksPage.getCollectionNames())));
 
         for (String el : added) {
             bookmarksPage.openCollection(el).edit().openDeleteModal().delete();
             bookmarksPage = new BookmarksPage(webDriver);
         }
-        assertThat(added, everyItem(not(isIn(bookmarksPage.getCollectionNames()))));
+        assertThat("Item wasn't deleted from collections.", added, everyItem(not(isIn(bookmarksPage.getCollectionNames()))));
     }
 
     @Test
     void editBookmarkCollectionTest() {
-        MainPage mainPage = new MainPage(webDriver);
-        BookmarksPage bookmarksPage = mainPage.goToBookmarksPage();
-
+        CreateBookmarkCollectionModal createBookmarkCollectionModal =
+                new MainPage(webDriver).goToBookmarksPage().openCreateBookmarkCollectionModal();
         String createName = MyRandom.getString();
-        assertThat(bookmarksPage.getCollectionNames(), not(hasItem(createName)));
-
-        CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
-        bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
-        assertThat(bookmarksPage.getCollectionNames(), hasItem(createName));
+        BookmarksPage bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
+        assertThat("Collection wasn't created.", bookmarksPage.getCollectionNames(), hasItem(createName));
 
         CollectionPage collectionPage = bookmarksPage.openCollection(createName);
-        assertThat(collectionPage.getCollectionName(), equalTo(createName));
+        assertThat("Incorrect collection name.", collectionPage.getCollectionName(), equalTo(createName));
 
         String newName = MyRandom.getString();
         collectionPage.edit().openRenameModal().rename(newName);
-        assertThat(collectionPage.getCollectionName(), equalTo(newName));
+        assertThat("Renaming failed.", collectionPage.getCollectionName(), equalTo(newName));
 
         collectionPage.edit().openDeleteModal().delete();
     }
 
     @Test
     void addBookmarkToCollectionTest() {
-        BookmarksPage bookmarksPage = new MainPage(webDriver).goToBookmarksPage();
-        CreateBookmarkCollectionModal createBookmarkCollectionModal = bookmarksPage.openCreateBookmarkCollectionModal();
+        CreateBookmarkCollectionModal createBookmarkCollectionModal =
+                new MainPage(webDriver).goToBookmarksPage().openCreateBookmarkCollectionModal();
         String createName = MyRandom.getString();
-        bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
+        BookmarksPage bookmarksPage = createBookmarkCollectionModal.createCollection(createName);
 
         bookmarksPage.openFirstFeedBookmarkShortcutMenu().addToCollection(createName);
         CollectionPage collectionPage = bookmarksPage.openCollection(createName);
