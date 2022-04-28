@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.LoginPage;
-import utils.User;
 
 /**
  * Нужно добавить переменные окружения для параметров web драйвера и User. Пример:
@@ -29,8 +27,6 @@ class BaseTest {
     void setUp() {
         webDriver.manage().window().maximize();
         webDriver.get(BASE_URL);
-
-        new LoginPage(webDriver).login(User.fromProperties());
     }
 
     @AfterEach

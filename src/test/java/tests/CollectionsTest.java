@@ -1,15 +1,18 @@
 package tests;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import pages.LoginPage;
 import pages.MainPage;
 import pages.bookmarks.BookmarksPage;
 import pages.bookmarks.collections.CollectionPage;
 import pages.bookmarks.collections.CreateBookmarkCollectionModal;
 import utils.MyRandom;
+import utils.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 class CollectionsTest extends BaseTest {
+    @BeforeEach
+    void login() {
+        new LoginPage(webDriver).login(User.fromProperties());
+    }
+
     @Test
     void createBookmarkCollectionTest() {
         CreateBookmarkCollectionModal createBookmarkCollectionModal =
